@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Slider } from 'react-native';
 import _ from 'lodash';
 import Button from 'apsl-react-native-button'
 import Sound from 'react-native-sound';
@@ -13,9 +13,10 @@ class SoundButton extends Component {
     console.log(props);
     super(props);
     this.sound = new Sound(`${this.props.soundKey}.mp3`, Sound.MAIN_BUNDLE);
-    this.state = { playing: false };
+    this.state = { playing: false, volume: 0.5 };
     this.startOrStop = this.startOrStop.bind(this);
     this.buttonColor = this.buttonColor.bind(this);
+    this.updateVolume = this.updateVolume.bind(this);
   }
 
   startOrStop() {
@@ -28,16 +29,27 @@ class SoundButton extends Component {
     }
   }
 
+  updateVolume(value) {
+    this.sound.setVolume(this.state.volume);
+    this.setState({volume: value});
+  }
+
   buttonColor() {
     return this.state.playing ? '#e74c3c' : '#e98b39';
   }
 
   render() {
-    const text = this.state.playing ? `stop ${this.props.soundKey}` : `play ${this.props.soundKey}`;
+    const button = this.state.playing ? '⏸' : '▶️';
+    const backgroundColor = this.state.playing ? '#DDDDDD' : '#AAAAAA';
     return (
-      <Button style={{height: 30, backgroundColor: this.buttonColor()}} textStyle={{fontSize: 12}} onPress={this.startOrStop}>
-        {text}
-      </Button>
+      <View style={{height: 30, backgroundColor: backgroundColor, margin: 3, borderRadius: 10, flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text style={{margin: 3, fontSize: 20}} onPress={this.startOrStop}>{button}</Text>
+        <Text style={{width: 100}}>{this.props.soundKey.replace(/_/g, ' ')}</Text>
+        <Slider
+          disabled={!this.state.playing}
+          style={{height: 17, margin: 10, width: 100}}
+          value={this.state.volume} onValueChange={this.updateVolume} />
+      </View>
     );
   }
 }
@@ -50,12 +62,11 @@ class MainView extends Component {
 
   render() {
     const soundKeys = ['bell_melody', 'birdsong', 'birdsong_and_water', 'blue_noise',
-    'gusting_winds_v1', 'gusting_winds_v2', 'musical_neuromodulation', 'musical_neuromodulation_short',
+    'gusting_winds_v1', 'gusting_winds_v2', 'musical_neuromodulation',
     'purple_noise', 'river_and_cicada', 'shower', 'small_river_waterfall',
     'white_noise', 'white_noise_winds', 'zen_garden_v1', 'zen_garden_v2'];
 
     const buttons = soundKeys.map((soundKey) => {
-      console.log(soundKey)
       return (<SoundButton key={soundKey} soundKey={soundKey} />);
     });
 
@@ -71,10 +82,12 @@ class MainView extends Component {
 var styles = StyleSheet.create({
   container: {
      flex: 1,
-     justifyContent: 'center',
-     alignItems: 'center',
-     marginLeft: 20,
-     marginRight: 20,
+     justifyContent: 'space-around',
+     alignItems: 'stretch',
+     marginLeft: 10,
+     marginRight: 10,
+     marginTop: 30,
+     marginBottom: 10,
    },
 });
 
