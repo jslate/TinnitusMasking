@@ -10,12 +10,6 @@ class Player extends Component {
   }
 
   render() {
-    // wind_short, bell_melody, birdsong, birdsong_and_water, blue_noise',
-    // gusting_winds_v1, gusting_winds_v2, musical_neuromodulation,
-    // purple_noise, river_and_cicada, shower, small_river_waterfall,
-    // white_noise, white_noise_winds, zen_garden_v1, zen_garden_v2
-
-
     const buttons = this.props.sounds.map((sound) => {
       return (<SoundButton key={sound.key} soundKey={sound.key} name={sound.name} />);
     });

@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
   },
   soundButtonSoundName: {
     margin: 10,
-    width: 80,
   },
   soundButtonSoundNameSelected: {
     color: '#000000',
