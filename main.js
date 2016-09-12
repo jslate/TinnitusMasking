@@ -1,18 +1,17 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Slider } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Slider, TouchableHighlight } from 'react-native';
 import _ from 'lodash';
 import Button from 'apsl-react-native-button'
 import Sound from 'react-native-sound';
-// var Sound = require('react-native-sound');
 
 class SoundButton extends Component {
 
   constructor(props) {
-    console.log(props);
     super(props);
     this.sound = new Sound(`${this.props.soundKey}.mp3`, Sound.MAIN_BUNDLE);
+    this.sound.setNumberOfLoops(-1);
     this.state = { playing: false, volume: 0.5 };
     this.startOrStop = this.startOrStop.bind(this);
     this.buttonColor = this.buttonColor.bind(this);
@@ -25,6 +24,7 @@ class SoundButton extends Component {
       this.setState({playing: false});
     } else {
       this.sound.play(() => this.setState({playing: false}));
+      this.sound.setNumberOfLoops(-1);
       this.setState({playing: true});
     }
   }
@@ -39,17 +39,18 @@ class SoundButton extends Component {
   }
 
   render() {
-    const button = this.state.playing ? '⏸' : '▶️';
-    const backgroundColor = this.state.playing ? '#DDDDDD' : '#AAAAAA';
+    // const button = this.state.playing ? '⏸' : '▶️';
     return (
-      <View style={{height: 30, backgroundColor: backgroundColor, margin: 3, borderRadius: 10, flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={{margin: 3, fontSize: 20}} onPress={this.startOrStop}>{button}</Text>
-        <Text style={{width: 100}}>{this.props.soundKey.replace(/_/g, ' ')}</Text>
-        <Slider
-          disabled={!this.state.playing}
-          style={{height: 17, margin: 10, width: 100}}
-          value={this.state.volume} onValueChange={this.updateVolume} />
-      </View>
+      <TouchableHighlight style={styles.soundButton} onPress={this.startOrStop}>
+        <View style={[styles.soundView, this.state.playing && styles.playingSound]}>
+          <Text style={styles.soundName}>{this.props.name}</Text>
+          <View style={styles.slider}>
+            <Slider
+              disabled={!this.state.playing}
+              value={this.state.volume} onValueChange={this.updateVolume} />
+          </View>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -61,13 +62,23 @@ class MainView extends Component {
   }
 
   render() {
-    const soundKeys = ['bell_melody', 'birdsong', 'birdsong_and_water', 'blue_noise',
-    'gusting_winds_v1', 'gusting_winds_v2', 'musical_neuromodulation',
-    'purple_noise', 'river_and_cicada', 'shower', 'small_river_waterfall',
-    'white_noise', 'white_noise_winds', 'zen_garden_v1', 'zen_garden_v2'];
+    // wind_short, bell_melody, birdsong, birdsong_and_water, blue_noise',
+    // gusting_winds_v1, gusting_winds_v2, musical_neuromodulation,
+    // purple_noise, river_and_cicada, shower, small_river_waterfall,
+    // white_noise, white_noise_winds, zen_garden_v1, zen_garden_v2
+    const sounds = [
+      {name: 'Wind', key: 'gusting_winds_v1', category: 'nature'},
+      {name: 'Wind & Rain', key: 'gusting_winds_v2', category: 'nature'},
+      {name: 'Bells', key: 'bell_melody', category: 'melodies'},
+      {name: 'Peace', key: 'zen_garden_v1', category: 'melodies'},
+      {name: 'Zen', key: 'zen_garden_v2', category: 'melodies'},
+      {name: 'White', key: 'white_noise', category: 'noise'},
+      {name: 'Blue', key: 'blue_noise', category: 'noise'},
+      {name:'Purple', key: 'purple_noise', category: 'noise'},
+    ];
 
-    const buttons = soundKeys.map((soundKey) => {
-      return (<SoundButton key={soundKey} soundKey={soundKey} />);
+    const buttons = sounds.map((sound) => {
+      return (<SoundButton key={sound.key} soundKey={sound.key} name={sound.name} />);
     });
 
     return (
@@ -80,10 +91,36 @@ class MainView extends Component {
 }
 
 var styles = StyleSheet.create({
+  soundButton: {
+    borderRadius: 10,
+     flex: 1,
+     alignItems: 'center',
+     justifyContent: 'flex-start',
+     margin: 5,
+  },
+  soundView: {
+    backgroundColor: '#dbdae7',
+    borderRadius: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  playingSound: {
+    backgroundColor: '#b2b0ce',
+  },
+  soundName: {
+    margin: 10,
+    width: 80,
+  },
+  slider: {
+    height: 17,
+    margin: 25,
+    marginTop: 2,
+    flex: 1,
+  },
   container: {
      flex: 1,
-     justifyContent: 'space-around',
-     alignItems: 'stretch',
      marginLeft: 10,
      marginRight: 10,
      marginTop: 30,

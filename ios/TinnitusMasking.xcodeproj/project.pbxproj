@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -21,6 +22,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		5E2345241D86CB9D00A391BE /* wind_short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E2345231D86CB9D00A391BE /* wind_short.mp3 */; };
 		5E6235111D7F279E003120F8 /* bell_melody.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E6235021D7F279E003120F8 /* bell_melody.mp3 */; };
 		5E6235121D7F279E003120F8 /* birdsong_and_water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E6235031D7F279E003120F8 /* birdsong_and_water.mp3 */; };
 		5E6235131D7F279E003120F8 /* birdsong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E6235041D7F279E003120F8 /* birdsong.mp3 */; };
@@ -104,6 +106,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		5E2345151D86C89100A391BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EA3E56826846F5A15DDC47 /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -140,6 +149,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TinnitusMasking/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TinnitusMasking/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		5E2345231D86CB9D00A391BE /* wind_short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wind_short.mp3; path = ../wind_short.mp3; sourceTree = "<group>"; };
 		5E6235021D7F279E003120F8 /* bell_melody.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bell_melody.mp3; path = ../bell_melody.mp3; sourceTree = "<group>"; };
 		5E6235031D7F279E003120F8 /* birdsong_and_water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = birdsong_and_water.mp3; path = ../birdsong_and_water.mp3; sourceTree = "<group>"; };
 		5E6235041D7F279E003120F8 /* birdsong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = birdsong.mp3; path = ../birdsong.mp3; sourceTree = "<group>"; };
@@ -155,10 +165,10 @@
 		5E62350E1D7F279E003120F8 /* white_noise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = white_noise.mp3; path = ../white_noise.mp3; sourceTree = "<group>"; };
 		5E62350F1D7F279E003120F8 /* zen_garden_v1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zen_garden_v1.mp3; path = ../zen_garden_v1.mp3; sourceTree = "<group>"; };
 		5E6235101D7F279E003120F8 /* zen_garden_v2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zen_garden_v2.mp3; path = ../zen_garden_v2.mp3; sourceTree = "<group>"; };
+		63EA3E56826846F5A15DDC47 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		63EA3E56826846F5A15DDC47 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B94A66C827F746DBA3BA9EA0 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B94A66C827F746DBA3BA9EA0 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +283,7 @@
 				5E6235051D7F279E003120F8 /* blue_noise.mp3 */,
 				5E6235061D7F279E003120F8 /* gusting_winds_v1.mp3 */,
 				5E6235071D7F279E003120F8 /* gusting_winds_v2.mp3 */,
+				5E2345231D86CB9D00A391BE /* wind_short.mp3 */,
 				5E6235081D7F279E003120F8 /* musical_neuromodulation.mp3 */,
 				5E6235091D7F279E003120F8 /* purple_noise.mp3 */,
 				5E62350A1D7F279E003120F8 /* river_and_cicada.mp3 */,
@@ -297,6 +308,14 @@
 			isa = PBXGroup;
 			children = (
 				146834041AC3E56700842450 /* libReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E2345081D86C89100A391BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E2345161D86C89100A391BE /* libRNSound.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -462,6 +481,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = 5E2345081D86C89100A391BE /* Products */;
+					ProjectRef = 63EA3E56826846F5A15DDC47 /* RNSound.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -528,6 +551,13 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		5E2345161D86C89100A391BE /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = 5E2345151D86C89100A391BE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -557,6 +587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E62351D1D7F279E003120F8 /* white_noise.mp3 in Resources */,
+				5E2345241D86CB9D00A391BE /* wind_short.mp3 in Resources */,
 				5E62351F1D7F279E003120F8 /* zen_garden_v2.mp3 in Resources */,
 				5E62351A1D7F279E003120F8 /* shower.mp3 in Resources */,
 				5E62351E1D7F279E003120F8 /* zen_garden_v1.mp3 in Resources */,
@@ -647,12 +678,12 @@
 				INFOPLIST_FILE = TinnitusMaskingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinnitusMasking.app/TinnitusMasking";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinnitusMasking.app/TinnitusMasking";
 			};
 			name = Debug;
 		};
@@ -664,12 +695,12 @@
 				INFOPLIST_FILE = TinnitusMaskingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinnitusMasking.app/TinnitusMasking";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinnitusMasking.app/TinnitusMasking";
 			};
 			name = Release;
 		};
