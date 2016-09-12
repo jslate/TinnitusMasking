@@ -1,23 +1,15 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Navigator, TouchableHighlight } from 'react-native';
+import Player from './Player';
+import Picker from './Picker';
 import _ from 'lodash';
-import Button from 'apsl-react-native-button'
-import Sound from 'react-native-sound';
-import SoundButton from './SoundButton';
 
 class MainView extends Component {
   constructor(props) {
     super(props);
-  }
-
-  render() {
-    // wind_short, bell_melody, birdsong, birdsong_and_water, blue_noise',
-    // gusting_winds_v1, gusting_winds_v2, musical_neuromodulation,
-    // purple_noise, river_and_cicada, shower, small_river_waterfall,
-    // white_noise, white_noise_winds, zen_garden_v1, zen_garden_v2
-    const sounds = [
+    this.sounds = [
       {name: 'Wind', key: 'gusting_winds_v1', category: 'nature'},
       {name: 'Wind & Rain', key: 'gusting_winds_v2', category: 'nature'},
       {name: 'Bells', key: 'bell_melody', category: 'melodies'},
@@ -28,27 +20,64 @@ class MainView extends Component {
       {name:'Purple', key: 'purple_noise', category: 'noise'},
     ];
 
-    const buttons = sounds.map((sound) => {
-      return (<SoundButton key={sound.key} soundKey={sound.key} name={sound.name} />);
-    });
+    this.state = {selectedSounds: []}; //this.sounds.slice(0, 5)};
+    this.addSound = this.addSound.bind(this);
+  }
+
+  addSound(key) {
+    const soundToAdd = this.sounds.filter((sound) => sound.key === key);
+    this.setState({selectedSounds: _.uniq(this.state.selectedSounds.concat(soundToAdd))});
+  }
+
+  getRouteContent(name) {
+    if (name === 'Player') {
+      return <Player sounds={this.state.selectedSounds} />;
+    } else {
+      return <Picker sounds={this.sounds} selectedSounds={this.state.selectedSounds} addSound={this.addSound} />;
+    }
+  }
+
+
+  render() {
+
+    const routes = [{title: 'Player', buttonText: 'Add', index: 0}, {title: 'Add sound', buttonText: 'Done', index: 1}];
 
     return (
-      <View style={styles.container}>
-        {buttons}
-      </View>
+      <Navigator
+        initialRoute={routes[0]}
+        initialRouteStack={routes}
+        renderScene={(route, navigator) => {
+          return (
+            <View style={{margin: 20, flex: 1, alignItems: 'stretch'}}>
+              <TouchableHighlight style={{alignSelf: 'flex-end'}} onPress={() => route.index === 0 ? navigator.push(routes[1]) : navigator.pop()}>
+                <View style={styles.plusButton}>
+                  <Text style={styles.plusButtonText}>{route.buttonText}</Text>
+                  </View>
+                </TouchableHighlight>
+              {this.getRouteContent(route.title)}
+            </View>
+          );
+        }}
+      />
     );
   }
 
 }
 
 var styles = StyleSheet.create({
-  container: {
-     flex: 1,
-     marginLeft: 10,
-     marginRight: 10,
-     marginTop: 30,
-     marginBottom: 10,
-   },
+  plusButton: {
+    marginTop: 5,
+    backgroundColor: '#00FF00',
+  },
+  plusButtonText: {
+    borderRadius: 3,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    padding: 3,
+  }
 });
+
+
 
 export default MainView;
