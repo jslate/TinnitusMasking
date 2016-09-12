@@ -11,7 +11,7 @@ class Player extends Component {
 
   render() {
     const buttons = this.props.sounds.map((sound) => {
-      return (<SoundButton key={sound.key} soundKey={sound.key} name={sound.name} />);
+      return (<SoundButton key={sound.key} soundKey={sound.key} name={sound.name} removeSound={this.props.removeSound} editMode={this.props.editMode} />);
     });
 
     return (

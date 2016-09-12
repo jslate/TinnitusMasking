@@ -36,14 +36,25 @@ class SoundButton extends Component {
 
   render() {
     // const button = this.state.playing ? '⏸' : '▶️';
+
+    const slider = (
+      <Slider
+        disabled={!this.state.playing}
+        value={this.state.volume} onValueChange={this.updateVolume} />
+    );
+
+    const removeButton = (
+      <TouchableHighlight onPress={this.props.removeSound.bind(this, this.props.soundKey)}>
+        <Text>remove</Text>
+      </TouchableHighlight>
+    );
+
     return (
       <TouchableHighlight style={styles.soundButton} onPress={this.startOrStop}>
         <View style={[styles.soundView, this.state.playing && styles.playingSound]}>
           <Text style={styles.soundName}>{this.props.name}</Text>
           <View style={styles.slider}>
-            <Slider
-              disabled={!this.state.playing}
-              value={this.state.volume} onValueChange={this.updateVolume} />
+            { this.props.editMode ? removeButton : slider }
           </View>
         </View>
       </TouchableHighlight>

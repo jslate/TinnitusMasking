@@ -28,8 +28,9 @@ class MainView extends Component {
       {name:'Purple', key: 'purple_noise', category: 'noise'},
     ];
 
-    this.state = {selectedSounds: []}; //this.sounds.slice(0, 5)};
+    this.state = {selectedSounds: [], editMode: false}; //this.sounds.slice(0, 5)};
     this.addSound = this.addSound.bind(this);
+    this.removeSound = this.removeSound.bind(this);
   }
 
   addSound(key) {
@@ -37,9 +38,13 @@ class MainView extends Component {
     this.setState({selectedSounds: _.uniq(this.state.selectedSounds.concat(soundToAdd))});
   }
 
+  removeSound(key) {
+    this.setState({selectedSounds: this.state.selectedSounds.filter((sound) => sound.key !== key)});
+  }
+
   getRouteContent(name) {
     if (name === 'Player') {
-      return <Player sounds={this.state.selectedSounds} />;
+      return <Player sounds={this.state.selectedSounds} removeSound={this.removeSound} editMode={this.state.editMode} />;
     } else {
       return <Picker sounds={this.sounds} selectedSounds={this.state.selectedSounds} addSound={this.addSound} />;
     }
@@ -49,6 +54,15 @@ class MainView extends Component {
   render() {
 
     const routes = [{title: 'Player', buttonText: 'Add', index: 0}, {title: 'Add sound', buttonText: 'Done', index: 1}];
+
+
+    const editButton = (
+      <TouchableHighlight style={{alignSelf: 'flex-end'}} onPress={() => this.setState({editMode: !this.state.editMode})}>
+        <View style={styles.plusButton}>
+          <Text style={styles.plusButtonText}>Edit</Text>
+        </View>
+      </TouchableHighlight>
+    )
 
     return (
       <Navigator
@@ -60,8 +74,9 @@ class MainView extends Component {
               <TouchableHighlight style={{alignSelf: 'flex-end'}} onPress={() => route.index === 0 ? navigator.push(routes[1]) : navigator.pop()}>
                 <View style={styles.plusButton}>
                   <Text style={styles.plusButtonText}>{route.buttonText}</Text>
-                  </View>
-                </TouchableHighlight>
+                </View>
+              </TouchableHighlight>
+              { route.index === 0 && this.state.selectedSounds.length > 0 ? editButton : null}
               {this.getRouteContent(route.title)}
             </View>
           );
