@@ -100,6 +100,7 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFFFFF',
     padding: 3,
+    fontSize: 25,
   }
 });
 

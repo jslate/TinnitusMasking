@@ -50,8 +50,8 @@ class SoundButton extends Component {
     );
 
     const removeButton = (
-      <TouchableHighlight onPress={this.handleRemoveSong}>
-        <Text>remove</Text>
+      <TouchableHighlight style={styles.removeButton} onPress={this.handleRemoveSong}>
+        <Text style={styles.removeButtonText}>remove</Text>
       </TouchableHighlight>
     );
 
@@ -97,6 +97,17 @@ var styles = StyleSheet.create({
     marginTop: 2,
     flex: 1,
   },
+  removeButton: {
+    marginTop: 5,
+    backgroundColor: '#FF0000',
+  },
+  removeButtonText: {
+    borderRadius: 3,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    padding: 3,
+  }
 });
 
 export default SoundButton;
