@@ -12,6 +12,7 @@ class SoundButton extends Component {
     this.startOrStop = this.startOrStop.bind(this);
     this.buttonColor = this.buttonColor.bind(this);
     this.updateVolume = this.updateVolume.bind(this);
+    this.handleRemoveSong = this.handleRemoveSong.bind(this);
   }
 
   startOrStop() {
@@ -34,6 +35,11 @@ class SoundButton extends Component {
     return this.state.playing ? '#e74c3c' : '#e98b39';
   }
 
+  handleRemoveSong() {
+    if (this.state.playing) { this.sound.stop(); }
+    this.props.removeSound(this.props.soundKey);
+  }
+
   render() {
     // const button = this.state.playing ? '⏸' : '▶️';
 
@@ -44,7 +50,7 @@ class SoundButton extends Component {
     );
 
     const removeButton = (
-      <TouchableHighlight onPress={this.props.removeSound.bind(this, this.props.soundKey)}>
+      <TouchableHighlight onPress={this.handleRemoveSong}>
         <Text>remove</Text>
       </TouchableHighlight>
     );

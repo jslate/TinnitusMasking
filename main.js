@@ -39,7 +39,9 @@ class MainView extends Component {
   }
 
   removeSound(key) {
-    this.setState({selectedSounds: this.state.selectedSounds.filter((sound) => sound.key !== key)});
+    this.setState({selectedSounds: this.state.selectedSounds.filter((sound) => sound.key !== key)}, () => {
+      if (this.state.selectedSounds.length === 0) { this.setState({editMode: false}); }
+    });
   }
 
   getRouteContent(name) {
@@ -59,7 +61,7 @@ class MainView extends Component {
     const editButton = (
       <TouchableHighlight style={{alignSelf: 'flex-end'}} onPress={() => this.setState({editMode: !this.state.editMode})}>
         <View style={styles.plusButton}>
-          <Text style={styles.plusButtonText}>Edit</Text>
+          <Text style={styles.plusButtonText}>{this.state.editMode ? 'Done' : 'Edit'}</Text>
         </View>
       </TouchableHighlight>
     )
